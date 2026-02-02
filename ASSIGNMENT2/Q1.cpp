@@ -1,27 +1,23 @@
 #include <iostream>
 using namespace std;
 int main() {
-    int n = 3;
-    int m = 50;
-    int v[] = {60, 100, 120};
-    int weight[] = {10, 20, 40};
-    float x[3] = {0, 0, 0};
-    int U = m;
-    int i;
-    for (i = 0; i < n; i++) {
-        if (weight[i] > U)
-            break;
-        x[i] = 1.0;
-        U = U - weight[i];
+    int n = 6;
+    int start[6]  = {1, 3, 0, 5, 8, 5};
+    int finish[6] = {2, 4, 6, 7, 9, 9};
+    int count = 1;                
+    int lastFinish = finish[0];   
+    cout << "Selected activities:\n";
+    cout << "(" << start[0] << ", " << finish[0] << ")\n";
+    for (int i = 1; i < n; i++) {
+        if (start[i] >= lastFinish) {
+            cout << "(" << start[i] << ", " << finish[i] << ")\n";
+            lastFinish = finish[i];
+            count++;
+        }
     }
-    if (i < n) {
-        x[i] = (float)U / weight[i];
-    }
-    float totalValue = 0;
-    for (int i = 0; i < n; i++) {
-        totalValue += x[i] * v[i];
-    }
-    cout << "Max value: " << totalValue << endl;
+    cout << "Maximum number of activities = " << count;
     return 0;
 }
+
+
 
